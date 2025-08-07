@@ -1,0 +1,2 @@
+[2024-08-04 17:21:58] ERROR: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dinzinin_main.legal' doesn't exist
+[2024-08-04 17:22:00] ERROR: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dinzinin_main.legal' doesn't exist

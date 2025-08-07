@@ -1,0 +1,5 @@
+.env
+*/.env
+/learn/.env
+/learn/src/.env
+/careers/uploads/*

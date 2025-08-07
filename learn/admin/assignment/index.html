@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Assignment</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Add Assignment</h1>
+        <form id="assignmentForm" action="add_assignment.php" method="POST" enctype="multipart/form-data">
+            <label for="course_module">Select Module:</label>
+            <select id="course_module" name="module_id" required></select>
+
+            <label for="name">Assignment Name:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="description">Assignment Description:</label>
+            <textarea id="description" name="description" cols="10" required></textarea>
+            
+            <label for="image">Assignment Image:</label>
+            <input type="file" id="image" name="image" accept="image/*">
+            
+            <button type="submit">Add Assignment</button>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

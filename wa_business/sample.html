@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketing Preferences</title>
+    <style>
+        /* Add your custom styles here */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        select,
+        input[type="text"],
+        input[type="file"],
+        textarea,
+        input[type="submit"],
+        input[type="checkbox"] {
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        .file-upload-container {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <form id="marketing-form" action="process_template.php" method="post">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required><br>
+
+            <label for="language">Language:</label>
+            <select id="language" name="language" required>
+                <option value="en_US">English (US)</option>
+                <option value="en_UK">English (UK)</option>
+                <option value="es_ES">Spanish</option>
+                <!-- Add more options as needed -->
+            </select><br>
+
+            <label for="category">Category:</label>
+            <select id="category" name="category" required>
+                <option value="UTILITY">UTILITY</option>
+                <option value="MARKETING">MARKETING</option>
+                <option value="AUTHENTICATION">AUTHENTICATION</option>
+                <!-- Add more options as needed -->
+            </select><br>
+
+            <label for="allow_category_change">Allow Category Change:</label>
+            <input type="checkbox" id="allow_category_change" name="allow_category_change"><br>
+
+            <label for="header_format">Header Format:</label>
+            <select id="header_format" name="header_format" required onchange="toggleHeaderInput()">
+                <option value="TEXT">Text</option>
+                <option value="IMAGE">Media</option>
+            </select><br>
+
+            <div class="text-upload-container">
+                <label for="header">Header:</label>
+                <textarea id="header" name="header"></textarea><br>
+            </div>
+
+            <div class="file-upload-container">
+                <label for="header_media">Header Media:</label>
+                <input type="file" id="header_media" class="header_media" name="header_media" ><br>
+            </div>
+
+            <label for="body">Body:</label>
+            <textarea id="body" name="body" required></textarea><br>
+
+            <label for="footer">Footer:</label>
+            <input type="text" id="footer" name="footer" required><br>
+
+
+            <fieldset>
+                <legend>Select Button Types:</legend>
+                <label><input type="checkbox" name="button_types[]" value="QUICK_REPLY"> Quick Reply</label><br>
+                <label><input type="checkbox" name="button_types[]" value="URL"> Visit Website</label><br>
+                <label><input type="checkbox" name="button_types[]" value="PHONE_NUMBER"> Call Phone Number</label><br>
+                <label><input type="checkbox" name="button_types[]" value="COPY_CODE"> Copy Offer Code</label><br>
+                <label><input type="checkbox" name="button_types[]" value="complete_form"> Complete Form</label><br>
+            </fieldset>
+
+            <div id="button_fields_container" style="display: none;">
+                <label for="button_text">Button Text:</label>
+                <input type="text" id="button_text" name="button_text" value="Contact Support"><br>
+
+                <label for="url">URL:</label>
+                <input type="url" id="url" name="url"><br>
+            </div>
+
+            <div id="phone_number_fields_container" style="display: none;">
+                <label for="button_text_phone">Button Text:</label>
+                <input type="text" id="button_text_phone" name="button_text_phone" value="Call" ><br>
+
+                <label for="phone_number">Phone Number:</label>
+                <input type="tel" id="phone_number" name="phone_number" ><br>
+            </div>
+
+            <script>
+                function toggleButtonFields() {
+                    var buttonTypesCheckboxes = document.querySelectorAll('input[name="button_types[]"]');
+                    var buttonFieldsContainer = document.getElementById("button_fields_container");
+                    var phoneNumberFieldsContainer = document.getElementById("phone_number_fields_container");
+                    var showFields = false;
+            
+                    for (var i = 0; i < buttonTypesCheckboxes.length; i++) {
+                        if (buttonTypesCheckboxes[i].checked) {
+                            if (buttonTypesCheckboxes[i].value === "PHONE_NUMBER") {
+                                phoneNumberFieldsContainer.style.display = "block";
+                                break;
+                            }
+                            if (buttonTypesCheckboxes[i].value === "URL") {
+                                buttonFieldsContainer.style.display = "block";
+                                break;
+                            } else {
+                                
+                                buttonFieldsContainer.style.display = "none";
+                        phoneNumberFieldsContainer.style.display = "none";
+                            }
+                            
+                        }
+                    }
+                    buttonFieldsContainer.style.display = showButtonFields ? "block" : "none";
+        phoneNumberFieldsContainer.style.display = showPhoneNumberFields ? "block" : "none";
+                   
+                }
+            
+                // Attach event listeners to checkboxes
+                var buttonTypesCheckboxes = document.querySelectorAll('input[name="button_types[]"]');
+                buttonTypesCheckboxes.forEach(function(checkbox) {
+                    checkbox.addEventListener('change', toggleButtonFields);
+                });
+            </script>
+
+
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+
+    <script>
+        function toggleHeaderInput() {
+            var headerFormat = document.getElementById("header_format").value;
+            var textUploadContainer = document.querySelector(".text-upload-container");
+            var fileUploadContainer = document.querySelector(".file-upload-container");
+            var textInput = document.getElementById("header");
+            var textInput2=document.getElementsByClassName("header_media");
+            
+           
+    
+            if (headerFormat === "IMAGE") {
+                textUploadContainer.style.display = "none";
+                fileUploadContainer.style.display = "block";
+               
+               
+            } else {
+                textUploadContainer.style.display = "block";
+                fileUploadContainer.style.display = "none";
+                
+                
+              
+            }
+        }
+    </script>
+
+
+</body>
+
+</html>

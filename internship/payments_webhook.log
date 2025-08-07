@@ -1,0 +1,245 @@
+[2024-11-28 09:32:53] MESSAGE: Parsed Data:
+Array
+(
+    [data] => Array
+        (
+            [cf_link_id] => 1576977
+            [customer_details] => Array
+                (
+                    [customer_email] => john@gmail.com
+                    [customer_name] => John 
+                    [customer_phone] => 9000000000
+                )
+
+            [link_amount] => 200.12
+            [link_amount_paid] => 55.00
+            [link_auto_reminders] => 1
+            [link_created_at] => 2021-08-18T07:13:41
+            [link_currency] => INR
+            [link_expiry_time] => 2021-11-28T21:46:20
+            [link_id] => payment_ps11
+            [link_meta] => Array
+                (
+                    [notify_url] => https://ee08e626ecd88c61c85f5c69c0418cb5.m.pipedream.net
+                )
+
+            [link_minimum_partial_amount] => 11.00
+            [link_notes] => Array
+                (
+                    [note_key_1] => note_value_1
+                )
+
+            [link_notify] => Array
+                (
+                    [send_email] => 1
+                    [send_sms] => 1
+                )
+
+            [link_partial_payments] => 1
+            [link_purpose] => Payment for order 10
+            [link_status] => PARTIALLY_PAID
+            [link_url] => https://payments-test.cashfree.com/links//U1mgll3c0e9g
+            [order] => Array
+                (
+                    [order_amount] => 22.00
+                    [order_expiry_time] => 2021-08-18T07:34:50
+                    [order_hash] => Gb2gC7z0tILhGbZUIeds
+                    [order_id] => CFPay_U1mgll3c0e9g_ehdcjjbtckf
+                    [transaction_id] => 1021206
+                    [transaction_status] => SUCCESS
+                )
+
+        )
+
+    [type] => PAYMENT_LINK_EVENT
+    [version] => 1
+    [event_time] => 2021-08-18T12:55:06+05:30
+)
+
+
+
+[2024-11-28 09:44:54] MESSAGE: Parsed Data:
+Array
+(
+    [data] => Array
+        (
+            [form] => Array
+                (
+                    [cf_form_id] => 2011640
+                    [form_currency] => INR
+                    [form_id] => my-form-1
+                    [form_url] => https://payments-test.cashfree.com/forms/webhook-trial-1
+                )
+
+            [order] => Array
+                (
+                    [amount_details] => Array
+                        (
+                            [0] => Array
+                                (
+                                    [quantity] => 2
+                                    [title] => Webinar Tickets
+                                    [value] => 398
+                                )
+
+                            [1] => Array
+                                (
+                                    [title] => Zoom Platform Fee
+                                    [value] => 10
+                                )
+
+                            [2] => Array
+                                (
+                                    [title] => Buy me a coffee :)
+                                    [value] => 0
+                                )
+
+                            [3] => Array
+                                (
+                                    [selectedoption] => Option 1
+                                    [title] => Amount Dropdown Trial
+                                    [value] => 50
+                                )
+
+                        )
+
+                    [customer_details] => Array
+                        (
+                            [customer_email] => mohit.jasapara@cashfree.com
+                            [customer_fields] => Array
+                                (
+                                    [0] => Array
+                                        (
+                                            [title] => Zoom ID
+                                            [value] => mohit.jasapara
+                                        )
+
+                                    [1] => Array
+                                        (
+                                            [title] => Company Designation
+                                            [value] => 
+                                        )
+
+                                )
+
+                            [customer_name] => Mohit Jasapara
+                            [customer_phone] => 9999999999
+                        )
+
+                    [order_amount] => 22
+                    [order_id] => CFPay_U1mgll3c0e9g_ehdcjjbtckf
+                    [order_status] => PAID
+                    [transaction_id] => 1021206
+                )
+
+        )
+
+    [type] => PAYMENT_FORM_ORDER_WEBHOOK
+    [event_time] => 2021-04-16T14:10:36+05:30
+)
+
+
+
+[2024-11-28 09:58:36] MESSAGE: Parsed Data:
+Array
+(
+    [data] => Array
+        (
+            [form] => Array
+                (
+                    [cf_form_id] => 2011640
+                    [form_currency] => INR
+                    [form_id] => my-form-1
+                    [form_url] => https://payments-test.cashfree.com/forms/webhook-trial-1
+                )
+
+            [order] => Array
+                (
+                    [amount_details] => Array
+                        (
+                            [0] => Array
+                                (
+                                    [quantity] => 2
+                                    [title] => Webinar Tickets
+                                    [value] => 398
+                                )
+
+                            [1] => Array
+                                (
+                                    [title] => Zoom Platform Fee
+                                    [value] => 10
+                                )
+
+                            [2] => Array
+                                (
+                                    [title] => Buy me a coffee :)
+                                    [value] => 0
+                                )
+
+                            [3] => Array
+                                (
+                                    [selectedoption] => Option 1
+                                    [title] => Amount Dropdown Trial
+                                    [value] => 50
+                                )
+
+                        )
+
+                    [customer_details] => Array
+                        (
+                            [customer_email] => mohit.jasapara@cashfree.com
+                            [customer_fields] => Array
+                                (
+                                    [0] => Array
+                                        (
+                                            [title] => Zoom ID
+                                            [value] => mohit.jasapara
+                                        )
+
+                                    [1] => Array
+                                        (
+                                            [title] => Company Designation
+                                            [value] => 
+                                        )
+
+                                )
+
+                            [customer_name] => Mohit Jasapara
+                            [customer_phone] => 9999999999
+                        )
+
+                    [order_amount] => 22
+                    [order_id] => CFPay_U1mgll3c0e9g_ehdcjjbtckf
+                    [order_status] => PAID
+                    [transaction_id] => 1021206
+                )
+
+        )
+
+    [type] => PAYMENT_FORM_ORDER_WEBHOOK
+    [event_time] => 2021-04-16T14:10:36+05:30
+)
+
+
+
+[2024-11-28 10:30:18] MESSAGE: Raw webhook data:
+{"data":{"form":{"cf_form_id":2011640,"form_currency":"INR","form_id":"my-form-1","form_url":"https://payments-test.cashfree.com/forms/webhook-trial-1"},"order":{"amount_details":[{"quantity":2,"title":"Webinar Tickets","value":398},{"title":"Zoom Platform Fee","value":10},{"title":"Buy me a coffee :)","value":0},{"selectedoption":"Option 1","title":"Amount Dropdown Trial","value":50}],"customer_details":{"customer_email":"mohit.jasapara@cashfree.com","customer_fields":[{"title":"Zoom ID","value":"mohit.jasapara"},{"title":"Company Designation","value":""}],"customer_name":"Mohit Jasapara","customer_phone":"9999999999"},"order_amount":22,"order_id":"CFPay_U1mgll3c0e9g_ehdcjjbtckf","order_status":"PAID","transaction_id":1021206}},"type":"PAYMENT_FORM_ORDER_WEBHOOK","event_time":"2021-04-16T14:10:36+05:30"}
+[2024-11-28 10:30:19] MESSAGE: Payment confirmed emailed to mohit.jasapara@cashfree.com
+[2024-11-28 10:52:06] MESSAGE: Raw webhook data:
+{"data":{"form":{"cf_form_id":6267371,"form_id":"321","form_url":"https://payments-test.cashfree.com/forms/dinzintest","form_currency":"INR"},"order":{"order_id":"CFPay_dinzintest_drri72pe3q","order_amount":"1.00","transaction_id":5114915146025,"order_status":"PAID","customer_details":{"customer_phone":"8867466035","customer_email":"mallikarjun016.rymec@gmail.com","customer_name":"Mallikarjun D","customer_fields":[{"title":"Doc80G","value":""}]},"amount_details":[{"title":"Training Test","value":"1"}]}},"type":"PAYMENT_FORM_ORDER_WEBHOOK","event_time":"2024-11-28T10:52:06+05:30"}
+[2024-11-28 10:52:07] MESSAGE: Payment confirmed emailed to mallikarjun016.rymec@gmail.com
+[2024-11-28 10:52:36] MESSAGE: Raw webhook data:
+{"data":{"form":{"cf_form_id":6267371,"form_id":"321","form_url":"https://payments-test.cashfree.com/forms/dinzintest","form_currency":"INR"},"order":{"order_id":"CFPay_dinzintest_drsmb7pnbe","order_amount":"1.00","transaction_id":5114915146029,"order_status":"PAID","customer_details":{"customer_phone":"9353333945","customer_email":"connect.charanbestha@gmail.com","customer_name":"Charan","customer_fields":[{"title":"Doc80G","value":""}]},"amount_details":[{"title":"Training Test","value":"1"}]}},"type":"PAYMENT_FORM_ORDER_WEBHOOK","event_time":"2024-11-28T10:52:36+05:30"}
+[2024-11-28 10:52:36] MESSAGE: Payment confirmed emailed to connect.charanbestha@gmail.com
+[2024-11-28 22:24:07] MESSAGE: Raw webhook data:
+{"data":{"form":{"cf_form_id":58788913,"form_id":null,"form_url":"https://payments.cashfree.com/forms/Dinzin","form_currency":"INR"},"order":{"order_id":"CFPay_Dinzin_3mvo1ok6fa","order_amount":"10.00","transaction_id":3269211907,"order_status":"PAID","customer_details":{"customer_phone":"7019409891","customer_email":"dinzinp@gmail.com","customer_name":"Sanjeev Test","customer_fields":[{"title":"Doc80G","value":""}]},"amount_details":[{"title":"Fee","value":"10"}]}},"type":"PAYMENT_FORM_ORDER_WEBHOOK","event_time":"2024-11-28T22:24:06+05:30"}
+[2024-11-28 22:24:07] MESSAGE: Payment confirmed emailed to dinzinp@gmail.com
+[2024-11-29 09:38:06] MESSAGE: Raw webhook data:
+
+[2024-11-29 09:38:08] MESSAGE: Raw webhook data:
+
+[2024-11-29 10:39:56] MESSAGE: Raw webhook data:
+{"data":{"form":{"cf_form_id":6267371,"form_id":"321","form_url":"https://payments-test.cashfree.com/forms/dinzintest","form_currency":"INR"},"order":{"order_id":"CFPay_dinzintest_g9p6amggeq","order_amount":"1.00","transaction_id":5114915158939,"order_status":"PAID","customer_details":{"customer_phone":"9353333945","customer_email":"dinzinp@gmail.com","customer_name":"Chara","customer_fields":[{"title":"Doc80G","value":""}]},"amount_details":[{"title":"Training Test","value":"1"}]}},"type":"PAYMENT_FORM_ORDER_WEBHOOK","event_time":"2024-11-29T10:39:55+05:30"}
+[2024-11-29 10:39:56] MESSAGE: Raw webhook post data:
+[]
+[2024-11-29 10:39:57] MESSAGE: Payment confirmed emailed to dinzinp@gmail.com

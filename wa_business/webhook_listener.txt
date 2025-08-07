@@ -1,0 +1,5 @@
+[2024-03-10 19:59:57] MESSAGE: []
+[2024-03-10 19:59:57] MESSAGE: {"hub_mode":"subscribe","hub_challenge":"1951228854","hub_verify_token":"dinzin"}
+[2024-03-10 20:03:48] MESSAGE: []
+[2024-03-10 20:03:48] MESSAGE: {"hub_mode":"subscribe","hub_challenge":"536447267","hub_verify_token":"dinzin"}
+[2024-03-10 20:16:03] MESSAGE: []

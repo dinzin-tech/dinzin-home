@@ -1,0 +1,13 @@
+[2024-03-08 22:31:51] ERROR: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dinzin.admins' doesn't exist
+[2024-03-08 22:31:51] ERROR: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dinzin.admins' doesn't exist
+[2024-03-08 22:33:48] ERROR: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dinzin.admins' doesn't exist
+[2024-03-08 22:33:48] ERROR: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dinzin.admins' doesn't exist
+[2024-03-08 22:34:05] ERROR: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dinzin.admins' doesn't exist
+[2024-03-08 22:34:05] ERROR: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dinzin.admins' doesn't exist
+[2024-08-04 17:22:16] ERROR: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dinzinin_main.legal' doesn't exist
+[2024-08-04 17:22:26] ERROR: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dinzinin_main.legal' doesn't exist
+[2024-08-04 17:22:53] ERROR: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dinzinin_main.legal' doesn't exist
+[2024-11-20 20:39:40] ERROR: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'test'' at line 1
+[2024-12-02 00:13:56] ERROR: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'screenshot' cannot be null
+[2024-12-02 00:18:47] ERROR: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'screenshot' cannot be null
+[2024-12-02 00:28:53] ERROR: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'screenshot' cannot be null
