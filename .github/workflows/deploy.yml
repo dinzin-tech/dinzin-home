@@ -1,0 +1,27 @@
+name: Deploy to Hosting via FTP
+
+on:
+  push:
+    branches:
+      - release
+
+jobs:
+  deploy:
+    runs-on: self-hosted  # Uses your Windows runner
+
+    steps:
+      - name: Mark repository as safe directory
+        run: |
+          git config --global --add safe.directory "C:/actions-runner-dinzin/_work/dinzin-home/dinzin-home"
+        shell: cmd
+      
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install WinSCP
+        run: powershell -ExecutionPolicy Bypass -Command "choco install winscp -y"
+
+      - name: Deploy to Hosting via SFTP (Using WinSCP)
+        run: |
+            winscp.com /command "open sftp://${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}@${{ secrets.FTP_HOST }}:${{ secrets.FTP_PORT }} -hostkey=""ssh-rsa 3072 2qhRJsMH8xfpi2rIF1S3kX3UWHnbtG+fdyAT5c+I0mg""" "synchronize remote C:/actions-runner-dinzin/_work/whatypie/whatypie /domains/whatypie.com/public_html" "exit"
+        shell: cmd
