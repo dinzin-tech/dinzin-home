@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Mark repository as safe directory
         run: |
-          git config --global --add safe.directory "C:/actions-runner-dinzin/_work/dinzin-home/dinzin-home"
+          git config --global --add safe.directory "C:/actions-runner-dinzin-home/_work/dinzin-home/dinzin-home"
         shell: cmd
       
       - name: Checkout Code
@@ -23,5 +23,5 @@ jobs:
 
       - name: Deploy to Hosting via SFTP (Using WinSCP)
         run: |
-            winscp.com /command "open sftp://${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}@${{ secrets.FTP_HOST }}:${{ secrets.FTP_PORT }}" "synchronize remote C:/actions-runner-dinzin/_work/whatypie/whatypie /domains/whatypie.com/public_html" "exit"
+            winscp.com /command "open sftp://${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}@${{ secrets.FTP_HOST }}:${{ secrets.FTP_PORT }}" "synchronize remote C:/actions-runner-dinzin-home/_work/dinzin-home/dinzin-home /domains/dinzin.in/public_html" "exit"
         shell: cmd
