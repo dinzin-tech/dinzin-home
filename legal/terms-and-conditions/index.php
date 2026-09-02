@@ -27,7 +27,37 @@ if(!$title) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?=$title?> | DinZin</title>
+    <title>Terms & Conditions | Dinzin Technology Solutions Pvt. Ltd.</title>
+    <meta name="keywords" content="Terms and Conditions Dinzin, Dinzin Technology Solutions Terms, Enterprise Software Terms">
+    <meta name="description" content="Read the Terms & Conditions for Dinzin Technology Solutions Pvt. Ltd. Review our service terms, intellectual property policies, and client agreements.">
+    <link rel="canonical" href="https://dinzin.in/legal/terms-and-conditions/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dinzin.in/legal/terms-and-conditions/">
+    <meta property="og:title" content="Terms & Conditions | Dinzin Technology Solutions">
+    <meta property="og:description" content="Terms & Conditions for Dinzin Technology Solutions Pvt. Ltd. Enterprise software and AI engineering terms of service.">
+    <meta property="og:image" content="https://dinzin.in/img/logo.png">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Terms & Conditions | Dinzin Technology Solutions">
+    <meta name="twitter:description" content="Terms & Conditions for Dinzin Technology Solutions Pvt. Ltd. Enterprise software and AI engineering terms of service.">
+
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Terms & Conditions",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Dinzin Technology Solutions Pvt. Ltd.",
+        "url": "https://dinzin.in"
+      }
+    }
+    </script>
+
     <!-- Favicons -->
     <link href="../../img/favicon.png" rel="icon">
     <link href="../../img/apple-touch-icon.png" rel="apple-touch-icon">

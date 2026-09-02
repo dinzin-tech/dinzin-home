@@ -12,16 +12,24 @@ class Database
     private $pdo;
     
     public function __construct() {
-        // $config = require 'config.php';
-        $path = $path = $_SERVER['DOCUMENT_ROOT'];
-        // print_r($path);
-        $config = EnvParser::parse($path."/.env");
-        
+        // Resolve .env path: check project directory first, then DOCUMENT_ROOT
+        $envPath = __DIR__ . '/../../.env';
+        if (!file_exists($envPath) && !empty($_SERVER['DOCUMENT_ROOT'])) {
+            $envPath = rtrim($_SERVER['DOCUMENT_ROOT'], '/') . '/.env';
+        }
+
+        $config = EnvParser::parse($envPath);
+
+        $host     = !empty($config['DB_HOST']) ? $config['DB_HOST'] : '127.0.0.1';
+        $dbname   = !empty($config['DB_DATABASE']) ? $config['DB_DATABASE'] : 'dinzinin_main';
+        $username = isset($config['DB_USERNAME']) ? $config['DB_USERNAME'] : 'root';
+        $password = isset($config['DB_PASSWORD']) ? $config['DB_PASSWORD'] : '';
+
         try {
             $this->pdo = new PDO(
-                "mysql:host={$config['DB_HOST']};dbname={$config['DB_DATABASE']}",
-                $config['DB_USERNAME'],
-                $config['DB_PASSWORD']
+                "mysql:host={$host};dbname={$dbname};charset=utf8mb4",
+                $username,
+                $password
             );
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {

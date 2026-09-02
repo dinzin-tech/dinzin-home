@@ -148,7 +148,37 @@ $all_get_params = http_build_query($_GET);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Career | DinZin</title>
+    <title>Careers & Engineering Roles | Dinzin Technology Solutions</title>
+    <meta name="keywords" content="AI Engineering Careers, Software Developer Jobs, Tech Jobs Dinzin, AI Solutions Careers, Custom Software Careers">
+    <meta name="description" content="Build the future of AI engineering and enterprise digital transformation. Explore career opportunities and engineering roles at Dinzin Technology Solutions Pvt. Ltd.">
+    <link rel="canonical" href="https://dinzin.in/careers/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dinzin.in/careers/">
+    <meta property="og:title" content="Careers & Engineering Opportunities | Dinzin Technology Solutions">
+    <meta property="og:description" content="Join our engineering team. Explore open roles in AI engineering, custom software development, and digital transformation.">
+    <meta property="og:image" content="https://dinzin.in/img/logo.png">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://dinzin.in/careers/">
+    <meta name="twitter:title" content="Careers & Engineering Roles | Dinzin Technology Solutions">
+    <meta name="twitter:description" content="Join our elite team of AI engineers and software architects at Dinzin Technology Solutions Pvt. Ltd.">
+    <meta name="twitter:image" content="https://dinzin.in/img/logo.png">
+
+    <!-- JSON-LD Schema Markup for Careers -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Dinzin Technology Solutions Pvt. Ltd.",
+      "url": "https://dinzin.in/careers/",
+      "logo": "https://dinzin.in/img/logo.png",
+      "description": "Careers and engineering opportunities at Dinzin Technology Solutions Pvt. Ltd."
+    }
+    </script>
+
     <!-- Favicons -->
     <link href="../img/favicon.png" rel="icon">
     <link href="../img/apple-touch-icon.png" rel="apple-touch-icon">

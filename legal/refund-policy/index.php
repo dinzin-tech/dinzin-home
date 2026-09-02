@@ -27,7 +27,37 @@ if(!$title) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?=$title?> | DinZin</title>
+    <title>Refund Policy | Dinzin Technology Solutions Pvt. Ltd.</title>
+    <meta name="keywords" content="Refund Policy Dinzin, Dinzin Technology Solutions Legal, Service Guarantees">
+    <meta name="description" content="Read the Refund Policy for Dinzin Technology Solutions Pvt. Ltd. Understand our commercial terms, service delivery, and refund guidelines.">
+    <link rel="canonical" href="https://dinzin.in/legal/refund-policy/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dinzin.in/legal/refund-policy/">
+    <meta property="og:title" content="Refund Policy | Dinzin Technology Solutions">
+    <meta property="og:description" content="Refund Policy for Dinzin Technology Solutions Pvt. Ltd. Commercial terms and refund policies.">
+    <meta property="og:image" content="https://dinzin.in/img/logo.png">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Refund Policy | Dinzin Technology Solutions">
+    <meta name="twitter:description" content="Refund Policy for Dinzin Technology Solutions Pvt. Ltd. Commercial terms and refund policies.">
+
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Refund Policy",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Dinzin Technology Solutions Pvt. Ltd.",
+        "url": "https://dinzin.in"
+      }
+    }
+    </script>
+
     <!-- Favicons -->
     <link href="../../img/favicon.png" rel="icon">
     <link href="../../img/apple-touch-icon.png" rel="apple-touch-icon">

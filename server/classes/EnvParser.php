@@ -5,6 +5,10 @@ class EnvParser
 {
     public static function parse($file)
     {
+        if (!file_exists($file)) {
+            return [];
+        }
+
         $content = file_get_contents($file);
         $lines = explode("\n", $content);
 
@@ -18,8 +22,10 @@ class EnvParser
                 continue;
             }
 
-            list($key, $value) = explode('=', $line, 2);
-            $env[$key] = $value;
+            if (strpos($line, '=') !== false) {
+                list($key, $value) = explode('=', $line, 2);
+                $env[trim($key)] = trim($value);
+            }
         }
 
         return $env;

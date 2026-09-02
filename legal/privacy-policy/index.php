@@ -27,7 +27,37 @@ if(!$title) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?=$title?> | DinZin</title>
+    <title>Privacy Policy | Dinzin Technology Solutions Pvt. Ltd.</title>
+    <meta name="keywords" content="Privacy Policy Dinzin, Dinzin Technology Solutions Legal, Data Privacy, Enterprise AI Security">
+    <meta name="description" content="Read the Privacy Policy for Dinzin Technology Solutions Pvt. Ltd. Learn how we handle data privacy, client security, and enterprise information protection.">
+    <link rel="canonical" href="https://dinzin.in/legal/privacy-policy/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dinzin.in/legal/privacy-policy/">
+    <meta property="og:title" content="Privacy Policy | Dinzin Technology Solutions">
+    <meta property="og:description" content="Privacy Policy for Dinzin Technology Solutions Pvt. Ltd. Information protection and data privacy standards.">
+    <meta property="og:image" content="https://dinzin.in/img/logo.png">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Privacy Policy | Dinzin Technology Solutions">
+    <meta name="twitter:description" content="Privacy Policy for Dinzin Technology Solutions Pvt. Ltd. Information protection and data privacy standards.">
+
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Privacy Policy",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Dinzin Technology Solutions Pvt. Ltd.",
+        "url": "https://dinzin.in"
+      }
+    }
+    </script>
+
     <!-- Favicons -->
     <link href="../../img/favicon.png" rel="icon">
     <link href="../../img/apple-touch-icon.png" rel="apple-touch-icon">
