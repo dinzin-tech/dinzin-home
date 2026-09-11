@@ -95,6 +95,8 @@ require_once "../server/autoload.php";
         <h2>Admin Dashboard</h2>
         <div class="button-container">
             <a href="job_posting.php" target="_blank"><button>Manage Job Postings</button></a>
+            <a href="job_applications.php"><button>Job Applications</button></a>
+            <a href="inquiries.html"><button>Stored Inquiries</button></a>
             <a href="legal.php"><button>Legal</button></a>
             <a href="portfolio.php"><button>Portfolio</button></a>
             <a href="projects/index.php"><button>Projects</button></a>

@@ -32,41 +32,52 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if(!$applicant) {
 
         // upload the resume
-        $uploadDirectory = 'uploads/';
+        $uploadDirectory = __DIR__ . '/uploads/';
 
-        if (!file_exists($uploadDirectory)) {
+        if (!is_dir($uploadDirectory)) {
             mkdir($uploadDirectory, 0777, true);
         }
 
-        // Generate a unique name for the file to avoid overwriting
-        $uniqueFileName = $uploadDirectory . uniqid() . '_' . $file['name'];
+        $uniqueFileName = '';
+        if (!empty($file['name'])) {
+            $uniqueFileName = 'uploads/' . uniqid() . '_' . basename($file['name']);
+            $targetPath = __DIR__ . '/' . $uniqueFileName;
 
-        // Move the uploaded file to the destination
-        if (move_uploaded_file($file['tmp_name'], $uniqueFileName)) {
-            
-        } else {
-            
+            if (!move_uploaded_file($file['tmp_name'], $targetPath)) {
+                $resp = [
+                    "status" => false,
+                    "message" => "Resume upload failed. Please try again."
+                ];
+                echo json_encode($resp);
+                return;
+            }
         }
 
         $insert = $jobApplicationsTable->insertRecord([
             "full_name" => $fullName,
             "email" => $email,
             "phone" => $phone,
-            "refered_by" => $referedBy,
+            "refered_by" => substr($referedBy, 0, 255),
             "position" => $position,
             "year_passing" => $yearPassing,
-            "qualification" => $qualification,
-            "resume_url" => "https://dinzin.in/careers/".$uniqueFileName
+            "qualification" => substr($qualification, 0, 255),
+            "resume_url" => $uniqueFileName ? "https://dinzin.in/careers/" . $uniqueFileName : ''
         ]);
-        
+
+        if ($insert === false) {
+            $resp = [
+                "status" => false,
+                "message" => "Your application could not be saved. Please check the details and try again."
+            ];
+            echo json_encode($resp);
+            return;
+        }
+
         $to = "hr@dinzin.in";
         $from = "noreply@dinzin.in";
-        //$copyTo = "dinzinp@gmail.com,mallikarjun016.rymec@gmail.com";
-
         $header = "MIME-Version: 1.0\r\n";
         $header .= "Content-Type: text/html;charset=utf-8\r\n";
         $header .= "From: noreply <$from>\r\n";
-        //$header .= "Bcc: $copyTo\r\n";
         $header .= "Reply-To: $email\r\n";
 
         $subject = "Job Application for $position from $fullName";
@@ -78,29 +89,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $message .= "<p>Phone: $phone</p>";
         $message .= "<p>Referred By: $referedBy</p>";
         $message .= "<p>Passing Year: $yearPassing</p>";
-        $message .= "<p>Resume: <a href='https://dinzin.in/careers/{$uniqueFileName}'>Link to Resume</a></p>";
+        if ($uniqueFileName) {
+            $message .= "<p>Resume: <a href='https://dinzin.in/careers/{$uniqueFileName}'>Link to Resume</a></p>";
+        }
         $message .= "<br><p>$getParams</p>";
 
-        // Respond with a success message
-        if(mail($to, $subject, $message, $header)) {
-            
-            $resp = [
-                "status" => true,
-                "message" => "Application submitted successfully!"
-            ];
-            // echo "Application submitted successfully!";
-            echo json_encode($resp);
-            return;
-        }
-        else {
-            $resp = [
-                "status" => false,
-                "message" => "Something went wrong!"
-            ];
-            // echo "Application submitted successfully!";
-            echo json_encode($resp);
-            return;
-        }
+        @mail($to, $subject, $message, $header);
+
+        $resp = [
+            "status" => true,
+            "message" => "Application submitted successfully!"
+        ];
+        echo json_encode($resp);
+        return;
     }
     else {
         $resp = [

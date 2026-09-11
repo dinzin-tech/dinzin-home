@@ -27,13 +27,18 @@ function parseEnv($file)
     return $env;
 }
 
-// Load .env file
-$env = parseEnv(__DIR__ . '../../.env');
+// Load .env file from the project root
+$envFile = __DIR__ . '/../../.env';
+if (!file_exists($envFile) && !empty($_SERVER['DOCUMENT_ROOT'])) {
+    $envFile = rtrim($_SERVER['DOCUMENT_ROOT'], '/') . '/.env';
+}
 
-$host = $env['DB_HOST'];
-$username = $env['DB_USERNAME'];
-$password = $env['DB_PASSWORD'];
-$dbname = $env['DB_DATABASE'];
+$env = parseEnv($envFile);
+
+$host = $env['DB_HOST'] ?? '127.0.0.1';
+$username = $env['DB_USERNAME'] ?? 'root';
+$password = $env['DB_PASSWORD'] ?? '';
+$dbname = $env['DB_DATABASE'] ?? 'dinzinin_main';
 
 // $host = 'localhost';
 // $dbname = 'dinzinin_main';
