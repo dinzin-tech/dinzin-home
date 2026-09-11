@@ -166,6 +166,7 @@ $portfolioTbl = new Table('portfolio');
           <li><a href="industries/">Industries</a></li>
           <li><a href="about/">About</a></li>
           <li><a href="insights/">Insights</a></li>
+          <li><a href="careers/">Careers</a></li>
           <li><a href="contact/" class="nav-cta">Contact</a></li>
         </ul>
       </nav><!-- .main-nav -->

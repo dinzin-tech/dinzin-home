@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stored Contact Inquiries</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+            background: #f4f6f9;
+            color: #1f2937;
+        }
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 12px;
+        }
+        h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+        .btn {
+            background: #0f172a;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 16px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .btn.danger {
+            background: #b91c1c;
+        }
+        .container {
+            display: grid;
+            gap: 18px;
+        }
+        .card {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 18px 20px;
+            box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+        }
+        .meta {
+            margin-bottom: 8px;
+            color: #374151;
+            font-size: 14px;
+        }
+        .meta strong {
+            color: #111827;
+        }
+        .message {
+            margin-top: 10px;
+            line-height: 1.7;
+            white-space: pre-wrap;
+        }
+        .empty {
+            background: #fff7ed;
+            color: #9a5b00;
+            border: 1px solid #fed7aa;
+            border-radius: 8px;
+            padding: 15px 18px;
+        }
+        .delete-btn {
+            margin-top: 12px;
+            background: #dc2626;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="topbar">
+        <h1>Stored Contact Inquiries</h1>
+        <button class="btn" onclick="loadInquiries()">Refresh</button>
+    </div>
+
+    <div id="inquiries-container" class="container"></div>
+
+    <script>
+        async function loadInquiries() {
+            const container = document.getElementById('inquiries-container');
+            container.innerHTML = '<div class="empty">Loading inquiries...</div>';
+
+            try {
+                const response = await fetch('../storage/inquiries.json', { cache: 'no-store' });
+                if (!response.ok) {
+                    throw new Error('Unable to load inquiries');
+                }
+
+                const data = await response.json();
+
+                if (!Array.isArray(data) || data.length === 0) {
+                    container.innerHTML = '<div class="empty">No inquiries saved yet.</div>';
+                    return;
+                }
+
+                const entries = [...data].reverse();
+                container.innerHTML = entries.map((item, idx) => `
+                    <div class="card">
+                        <div class="meta"><strong>Name:</strong> ${escapeHtml(item.name || 'N/A')}</div>
+                        <div class="meta"><strong>Email:</strong> ${escapeHtml(item.email || 'N/A')}</div>
+                        <div class="meta"><strong>Subject:</strong> ${escapeHtml(item.subject || 'N/A')}</div>
+                        <div class="meta"><strong>Submitted At:</strong> ${escapeHtml(item.submitted_at || 'N/A')}</div>
+                        <div class="message"><strong>Message:</strong><br>${escapeHtml(item.message || '')}</div>
+                        <button class="delete-btn" onclick="deleteInquiry(${data.length - 1 - idx})">Delete</button>
+                    </div>
+                `).join('');
+            } catch (error) {
+                container.innerHTML = '<div class="empty">No inquiries file found yet.</div>';
+            }
+        }
+
+        async function deleteInquiry(index) {
+            const confirmed = confirm('Delete this inquiry?');
+            if (!confirmed) return;
+
+            const form = new FormData();
+            form.append('id', index);
+
+            const response = await fetch('delete_inquiry.php', {
+                method: 'POST',
+                body: form
+            });
+
+            if (response.ok) {
+                loadInquiries();
+            } else {
+                alert('Unable to delete inquiry.');
+            }
+        }
+
+        function escapeHtml(value) {
+            return String(value)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        loadInquiries();
+    </script>
+</body>
+</html>
