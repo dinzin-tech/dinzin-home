@@ -3,6 +3,7 @@
 $recaptha_errors = [
     'missing-input-response' => 'Please check the reCaptcha checkbox to confirm you are not a bot!',
     'invalid-input-response' => 'Please check the reCaptcha checkbox to confirm you are not a bot!',
+    'missing-secret' => 'Service temporarily unavailable. Please try again later.',
 ];
 
 if(isset($_POST['email'])) {
@@ -94,10 +95,16 @@ function reCaptcha($recaptcha){
         return ['success' => true];
     }
 
-    $secret = "6LfDEIgqAAAAALTiiVqtX4fHAZLSv7PXVmB_c5fh";
+    // Read secret from environment for production safety
+    $secret = getenv('RECAPTCHA_SECRET');
+    if (!$secret) {
+        error_log('RECAPTCHA_SECRET not set for contact.php');
+        return ['success' => false, 'error-codes' => ['missing-secret']];
+    }
+
     $ip = $remoteIp;
 
-    $postvars = array("secret"=>$secret, "response"=>$recaptcha, "remoteip"=>$ip);
+    $postvars = array("secret" => $secret, "response" => $recaptcha, "remoteip" => $ip);
 
     $url = "https://www.google.com/recaptcha/api/siteverify";
     $ch = curl_init();
