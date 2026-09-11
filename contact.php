@@ -17,31 +17,43 @@ if(isset($_POST['email'])) {
         $subject = $_POST["subject"];
         $messageContent = $_POST["message"];
 
-        $to = "contact@dinzin.in";
-        $from = "noreply@dinzin.in";
-        $copyTo = "mallikarjun016.rymec@gmail.com";
+        $subjectText = $subject;
+        $fullSubject = "$subjectText - $name";
 
-        $header = "MIME-Version: 1.0\r\n";
-        $header .= "Content-Type: text/html;charset=utf-8\r\n";
-        $header .= "From: noreply <$from>\r\n";
-        $header .= "Bcc: $copyTo\r\n";
+        $storageDir = __DIR__ . "/storage";
+        if (!is_dir($storageDir)) {
+            mkdir($storageDir, 0777, true);
+        }
 
-        $subject = "$subject - $name";
+        $storageFile = $storageDir . "/inquiries.json";
+        $inquiries = [];
 
-        $message = "<h1>Message Details</h1>\n";
-        $message .= "<p>Name: $name</p>";
-        $message .= "<p>Email: $email</p>";
-        $message .= "<p>Subject: $subject</p>";
-        $message .= "<p>Message:</p>";
-        $message .= "<p>{$messageContent}</p>";
+        if (file_exists($storageFile) && filesize($storageFile) > 0) {
+            $existingData = file_get_contents($storageFile);
+            $decodedData = json_decode($existingData, true);
 
-        $mailSent = mail($to, $subject, $message, $header);
-        
-        if($mailSent) {
+            if (is_array($decodedData)) {
+                $inquiries = $decodedData;
+            }
+        }
+
+        $inquiries[] = [
+            'name' => $name,
+            'email' => $email,
+            'subject' => $subjectText,
+            'full_subject' => $fullSubject,
+            'message' => $messageContent,
+            'submitted_at' => date('Y-m-d H:i:s'),
+            'source' => 'contact_form'
+        ];
+
+        $saved = file_put_contents($storageFile, json_encode($inquiries, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
+
+        if($saved !== false) {
             echo "OK";
         }
         else {
-            echo "Failed to send! Please try again later.";
+            echo "Failed to save inquiry locally. Please try again later.";
         }
 
     }else{
