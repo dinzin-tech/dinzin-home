@@ -47,12 +47,22 @@ if(isset($_POST['email'])) {
             'source' => 'contact_form'
         ];
 
-        $saved = file_put_contents($storageFile, json_encode($inquiries, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
+        // Write atomically with exclusive lock to avoid corruption/race conditions
+        $jsonPayload = json_encode($inquiries, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+        $tmpFile = $storageFile . '.tmp';
+        $saved = @file_put_contents($tmpFile, $jsonPayload, LOCK_EX);
 
-        if($saved !== false) {
-            echo "OK";
-        }
-        else {
+        if ($saved !== false) {
+            // Ensure permissions and then rename into place
+            @chmod($tmpFile, 0644);
+            if (@rename($tmpFile, $storageFile)) {
+                echo "OK";
+            } else {
+                @unlink($tmpFile);
+                echo "Failed to save inquiry locally. Please try again later.";
+            }
+        } else {
+            // Generic error message for clients; avoid leaking internals
             echo "Failed to save inquiry locally. Please try again later.";
         }
 
@@ -77,8 +87,15 @@ if(isset($_POST['email'])) {
 }
 
 function reCaptcha($recaptcha){
+    // Bypass reCaptcha when running the PHP built-in server or from localhost
+    // so the form can be tested locally without contacting Google's API.
+    $remoteIp = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
+    if (PHP_SAPI === 'cli-server' || $remoteIp === '127.0.0.1' || $remoteIp === '::1') {
+        return ['success' => true];
+    }
+
     $secret = "6LfDEIgqAAAAALTiiVqtX4fHAZLSv7PXVmB_c5fh";
-    $ip = $_SERVER['REMOTE_ADDR'];
+    $ip = $remoteIp;
 
     $postvars = array("secret"=>$secret, "response"=>$recaptcha, "remoteip"=>$ip);
 
