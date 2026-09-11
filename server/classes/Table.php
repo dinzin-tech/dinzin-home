@@ -396,7 +396,10 @@ class Table
             $stmt = $this->pdo->prepare($sql);
             $params = array_merge($setParams, $whereParams);
             $stmt->execute($params);
-            return $stmt->rowCount(); // Returns the number of affected rows
+
+            // Return true when the SQL statement executed successfully.
+            // MySQL may report rowCount() as 0 when the new values are the same as existing values.
+            return true;
         } catch (PDOException $e) {
             $this->logger->logException($e);
             return false;
