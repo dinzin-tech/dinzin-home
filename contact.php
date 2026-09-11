@@ -60,9 +60,43 @@ if(isset($_POST['email'])) {
                 echo "OK";
             } else {
                 @unlink($tmpFile);
+                // Log diagnostics to server error log for production debugging
+                $diag = [
+                    'time' => date('c'),
+                    'event' => 'rename_failed',
+                    'storageDir' => $storageDir,
+                    'storageFile' => $storageFile,
+                    'is_dir' => is_dir($storageDir),
+                    'dir_writable' => is_writable($storageDir),
+                    'file_exists' => file_exists($storageFile),
+                    'file_writable' => file_exists($storageFile) ? is_writable($storageFile) : null,
+                    'file_perms' => file_exists($storageFile) ? sprintf("%04o", fileperms($storageFile) & 07777) : null,
+                    'disk_free_bytes' => @disk_free_space($storageDir),
+                    'php_sapi' => PHP_SAPI,
+                    'uid' => function_exists('posix_getuid') ? posix_getuid() : null,
+                    'error' => error_get_last(),
+                ];
+                error_log('contact.php write error: ' . json_encode($diag));
                 echo "Failed to save inquiry locally. Please try again later.";
             }
         } else {
+            // Log diagnostics when initial write to temp file fails
+            $diag = [
+                'time' => date('c'),
+                'event' => 'write_tmp_failed',
+                'storageDir' => $storageDir,
+                'storageFile' => $storageFile,
+                'is_dir' => is_dir($storageDir),
+                'dir_writable' => is_writable($storageDir),
+                'file_exists' => file_exists($storageFile),
+                'file_writable' => file_exists($storageFile) ? is_writable($storageFile) : null,
+                'file_perms' => file_exists($storageFile) ? sprintf("%04o", fileperms($storageFile) & 07777) : null,
+                'disk_free_bytes' => @disk_free_space($storageDir),
+                'php_sapi' => PHP_SAPI,
+                'uid' => function_exists('posix_getuid') ? posix_getuid() : null,
+                'error' => error_get_last(),
+            ];
+            error_log('contact.php write error: ' . json_encode($diag));
             // Generic error message for clients; avoid leaking internals
             echo "Failed to save inquiry locally. Please try again later.";
         }
