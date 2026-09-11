@@ -95,9 +95,23 @@ function reCaptcha($recaptcha){
         return ['success' => true];
     }
 
-    // Read secret from environment for production safety
-    $secret = getenv('RECAPTCHA_SECRET');
-    if (!$secret) {
+    // Safely read secret from environment without relying solely on getenv()
+    $secret = null;
+    if (function_exists('getenv')) {
+        $val = getenv('RECAPTCHA_SECRET');
+        if ($val !== false && $val !== '') {
+            $secret = $val;
+        }
+    }
+    if (empty($secret)) {
+        if (!empty($_SERVER['RECAPTCHA_SECRET'])) {
+            $secret = $_SERVER['RECAPTCHA_SECRET'];
+        } elseif (!empty($_ENV['RECAPTCHA_SECRET'])) {
+            $secret = $_ENV['RECAPTCHA_SECRET'];
+        }
+    }
+
+    if (empty($secret)) {
         error_log('RECAPTCHA_SECRET not set for contact.php');
         return ['success' => false, 'error-codes' => ['missing-secret']];
     }
